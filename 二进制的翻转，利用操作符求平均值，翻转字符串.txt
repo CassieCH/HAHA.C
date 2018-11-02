@@ -1,0 +1,148 @@
+#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<stdlib.h>
+//1.编写函数：
+//unsigned int reverse_bit(unsigned int value);
+//这个函数的返回值value的二进制位模式从左到右翻转后的值。
+//
+//如：
+//在32位机器上25这个值包含下列各位：
+//00000000000000000000000000011001
+//翻转后：（2550136832）
+//10011000000000000000000000000000
+//程序结果返回：
+//2550136832
+//法一：
+
+
+#include<math.h>
+//unsigned int reverse_bit(unsigned int value)
+//{
+//	int m = 0;
+//	unsigned int ret = 0;
+//	int n = 0;
+//
+//	for (m = 31; m>=0; m--)
+//	{
+//	
+//		n=value% 2;
+//		ret = ret + (n*pow(2.0, m));
+//		value /= 2;
+//    }
+//	return ret;
+//}
+//法二
+unsigned int reverse_bit(unsigned int value)
+{
+	int m = 0;
+	unsigned int ret = 0;
+	for (m = 0; m < 32; m++)
+	{
+		ret+= ((value >> m) & 1) << (31 - m);
+	}
+	return ret;
+}
+
+int main()
+{
+	unsigned int value;
+	scanf("%u", &value);
+	printf("%u\n", reverse_bit(value));
+	system("pause");
+	return 0;
+}
+
+//2、不使用（a + b） / 2这种方式，求两个数的平均值
+int main()
+{
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	int d = 0;
+	int e = 0;
+	scanf("%d %d", &a, &b);
+	c = ((a + b) >> 1);//法一 利用右移操作符，可能会有溢出现象
+	d = ((a - b) >> 1) + b;//法二 不会溢出，但若一个数为负数就会出错
+	e = (a&b) + ((a^b) >> 1);//法三 不会溢出且安全
+	printf("平均数为%d\n", e); 
+	system("pause");
+	return 0;
+}
+3、有一个字符数组的内容为:"student a am i",
+	请你将数组的内容改为"i am a student".
+	要求：
+	不能使用库函数。
+	只能开辟有限个空间（空间个数和字符串的长度无关）
+int main()
+{
+	char arr1[] = "student a am i";
+	int i = 0;
+	int sz = sizeof(arr1) / sizeof(arr1[0]);
+	for (i = sz - 1; i >= 0; i--)
+	{
+		while (i = '\0')
+		{
+
+		}
+		printf("%c", arr1[i]);
+	}
+	system("pause");
+
+}
+# include <stdlib.h>
+#include<stdio.h>
+#include<assert.h>
+int my_strlen(const char *str)
+{
+	assert(str);
+	int count = 0;
+	while (*str!='\0')
+	{
+		count++;
+		str++;
+	}
+	return count;
+}
+void reverse(char *left,char *right)
+{
+	while (left < right)
+	{
+        char tmp = *left;
+		*left = *right;
+		*right = tmp;
+		left++;
+		right--;
+	}
+}
+void str_reverse(char *str)
+{
+	assert(str);
+	int len = my_strlen(str);
+    reverse(str, str + len - 1);
+	while (str != '\0')
+	{
+		char *p = str;
+		while ((*str != ' ') && (*str != '\0'))
+		{
+			str++;
+		}
+		reverse(p, str - 1);
+		if (*str != '\0')
+		{
+			str++;
+		}
+	}
+}
+	int main()
+    {
+	
+		char str[] = "student a am i";
+		printf("%s", str);
+		int left = 0;
+		int right = 0;
+		str_reverse(str);
+		system("pause");
+		printf("%s\n", str);
+		
+		return 0;
+	}
