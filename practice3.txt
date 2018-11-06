@@ -1,0 +1,107 @@
+#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<stdlib.h>
+1.实现一个函数，可以左旋字符串中的k个字符。
+ABCD左旋一个字符得到BCDA
+ABCD左旋两个字符得到CDAB
+#include<string.h>
+void rotate(char *arr, int k)
+{
+	int i = strlen(arr);
+	for (int j = k; j < i; j++)
+	{
+		printf("%c", arr[j]);
+	}
+	printf(" ");
+	int j = 0;
+	for (j = 0; j < k; j++)
+	{
+	    printf("%c", arr[j]);
+	}
+}
+
+int main()
+{
+	char arr[] = "ABCDEF";
+	int k = 2;
+	rotate(arr,  k);
+	system("pause");
+	return 0;
+}
+2.判断一个字符串是否为另外一个字符串旋转之后的字符串。
+例如：给定s1 = AABCD和s2 = BCDAA，返回1，给定s1 = abcd和s2 = ACBD，返回0.
+
+AABCD左旋一个字符得到ABCDA
+AABCD左旋两个字符得到BCDAA
+
+AABCD右旋一个字符得到DAABC
+
+
+
+
+#include <string.h>
+
+
+int judge(char str1[], char str2[])
+
+{
+
+	int i = 0;
+
+	int j = 0;
+
+	int lenght = strlen(str1);
+
+	for (j = 1; j <= lenght; j++)
+
+	{
+
+		{
+
+			int tem = str1[0];
+
+			for (i = 0; i < lenght - 1; i++)
+
+			{
+
+				str1[i] = str1[i + 1];
+
+			}
+			
+                                             str1[lenght - 1] = tem;
+
+		}
+
+		if (0 == strcmp(str1, str2))
+
+		{
+
+			return 1;
+
+		}
+
+	}
+
+	return 0;
+
+}
+
+int main()
+
+{
+	
+                char s1[10] = "AABCD";
+
+	char s2[10] = "BCDAA";
+
+	printf("s1 = %s\n", s1);
+
+	printf("s2 = %s\n", s2);
+
+	printf("%d\n", judge(s1, s2));
+
+	system("pause");
+
+	return 0;
+
+}
