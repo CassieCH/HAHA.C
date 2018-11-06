@@ -1,0 +1,78 @@
+有一个字符数组的内容为:"student a am i",
+	请你将数组的内容改为"i am a student".
+	要求：
+	不能使用库函数。
+	只能开辟有限个空间（空间个数和字符串的长度无关）
+int main()
+{
+	char arr1[] = "student a am i";
+	int i = 0;
+	int sz = sizeof(arr1) / sizeof(arr1[0]);
+	for (i = sz - 1; i >= 0; i--)
+	{
+		while (i = '\0')
+		{
+
+		}
+		printf("%c", arr1[i]);
+	}
+	system("pause");
+
+}
+# include <stdlib.h>
+#include<stdio.h>
+#include<assert.h>
+int my_strlen(const char *str)
+{
+	assert(str);
+	int count = 0;
+	while (*str!='\0')
+	{
+		count++;
+		str++;
+	}
+	return count;
+}
+void reverse(char *left,char *right)
+{
+	while (left < right)
+	{
+        char tmp = *left;
+		*left = *right;
+		*right = tmp;
+		left++;
+		right--;
+	}
+}
+void str_reverse(char *str)
+{
+	assert(str);
+	int len = my_strlen(str);
+    reverse(str, str + len - 1);
+	while (str != '\0')
+	{
+		char *p = str;
+		while ((*str != ' ') && (*str != '\0'))
+		{
+			str++;
+		}
+		reverse(p, str - 1);
+		if (*str != '\0')
+		{
+			str++;
+		}
+	}
+}
+	int main()
+    {
+	
+		char str[] = "student a am i";
+		printf("%s", str);
+		int left = 0;
+		int right = 0;
+		str_reverse(str);
+		system("pause");
+		printf("%s\n", str);
+		
+		return 0;
+	}
