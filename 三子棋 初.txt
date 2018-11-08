@@ -1,0 +1,103 @@
+game.c
+#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<string.h>//memset函数的头文件
+#include"game.h"
+void InitBoard(char board[][COL], int row, int col)//初始化棋盘
+{
+	memset(&board[0][0], ' ', ROW*COL*board[0][0]);//个数时候乘以board[0][0],则不管数组元素类型如何变，都能方便初始化
+}
+void PlayBoard(char board[][COL], int row, int col)
+{
+	int i = 0;
+	int j = 0;
+	//for (i = 0; i < ROW; i++)
+	//{
+	///*	printf(" %c ", board[i][j]);*/
+	//	for (j = 0; j < COL - 1; j++)
+	//	{
+	//		printf(" |");
+	//	}
+	//}
+	//printf("\n");
+	//for (i = 0; i < ROW-1; i++)
+	//{
+	//	for (j = 0; j < COL; j++)
+	//	{
+	//		printf("__");
+	//	}
+	//}
+	//printf("\n");
+	
+	for (i = 0; i < ROW; i++)
+	{
+		{
+			printf(" %c | %c | %c \n", board[0][0], board[0][1], board[0][2]);
+
+			printf("\n");
+		}
+		if (i < ROW - 1)
+		{
+			printf("------------\n");
+		}
+	}
+	//for (i = 0; i < ROW-1; i++)
+	//{
+	//	printf("----------");
+	//	printf("\n");
+
+	//}
+
+}
+game.h
+#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<stdlib.h>
+#define COL 3
+#define ROW 3
+void InitBoard(char board[ROW][COL], int row, int col);
+void PlayBoard(char board[ROW][COL], int row, int col);
+源.c
+#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include"game.h"//自定义的头文件用双引号打开
+
+void menu()
+{
+	printf("请选择：\n");
+	printf("-------------------------\n"); 
+	printf("---------1.play----------\n");
+	printf("---------0.exit----------\n");
+	printf("-------------------------\n");
+}
+void game()
+{
+	char board[][COL] = { 0 };
+	InitBoard( board,  ROW,  COL);//先初始化一个不可见的空棋盘 
+	PlayBoard(board, ROW, COL);//游戏棋盘
+
+
+}
+int main()
+{
+	int input = 0;
+	
+	/*srand((unsigned int)time(NULL));*/
+	do{
+		menu();
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			break;
+		default:
+			printf("输入错误 请重新选择\n");
+			break;
+
+		}
+
+	} while (input);
+}
