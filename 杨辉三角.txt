@@ -1,0 +1,71 @@
+杨辉三角
+
+#define _CRT_SECURE_NO_WARNINGS 5
+
+#include <stdio.h>
+
+#include<stdlib.h>
+
+
+int triangle(int i, int j)
+
+{
+	
+if (j == 1 || j == i + 1)
+	
+    {
+		
+         return 1;
+	
+                        }
+	
+return triangle(i - 1, j - 1) + triangle(i - 1, j);
+                             
+}
+
+
+int main()
+
+{
+	int i;//行
+	
+int j;//列
+	
+int n;//想要的行数
+   
+ printf("please input the line:\n");
+	
+scanf("%d", &n);
+
+	
+for (i = 0; i <= n; i++)//假设是从第零行开始的
+	
+{
+		
+      for (j = 1; j <= n - i; j++)
+
+	{
+			
+          printf(" ");
+	
+	}  
+
+
+ for (j = 1; j <= i + 1; j++)
+	
+	{
+		
+	printf("%d ", triangle(i, j));
+	
+	}
+
+		printf("\n");
+
+	}
+
+	system("pause");
+
+
+	return 0;
+
+}
