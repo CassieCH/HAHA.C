@@ -1,0 +1,59 @@
+#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<stdlib.h>
+//1.一个数组中只有两个数字是出现一次，
+//其他所有数字都出现了两次。
+//找出这两个数字，编程实现
+void bubble(int arr[],int sz)
+{
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < sz-1; i++)
+	{
+		for (j = 0; j <sz - 1 - i; j++)
+		if (arr[j]>arr[j + 1])
+		{
+			int tmp = arr[j];
+			arr[j] = arr[j + 1];
+			arr[j + 1] = tmp;
+		}
+	}
+}
+int search(int arr[], int sz)
+{
+	int i = 0;
+	int ret = 0;
+	while (i < sz)
+	{
+		if (arr[i] == arr[i + 1])
+		{
+			i += 2;
+		}
+		else
+		{
+
+			printf("%d ", arr[i]);
+			ret++;
+			i++;
+		}
+
+	}
+}
+
+int main()
+{
+	int arr[] = { 1,2,56,44,56,2,3,3};
+	int sz = sizeof(arr) / sizeof(arr[1]);
+	int m;
+	bubble(arr, sz);
+	for (m = 0; m < sz; m++)
+	{
+		printf("%d ", arr[m]);
+	}
+	printf("\n");
+	printf("the two single numbers are:\n");
+	search(arr, sz);
+	
+	system("pause");
+	return 0;
+}
