@@ -1,0 +1,56 @@
+1、#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<stdlib.h>
+int my_strcmp(const char *str1, const char *str2)
+{
+
+	while (*(str1) == *(str2))
+	{
+		if (*str1 == '\0')
+			return 0;
+		str1++;
+		str2++;
+	}
+	if (*str1 > *str2)
+		return 1;
+	else
+		return -1;
+}
+
+
+int main()
+{
+	
+	char str1[] = "ABCD";
+	char str2[] = "ABCD";
+	printf("%d\n", my_strcmp(str1, str2));
+    system("pause");
+	return 0;
+
+}
+2、#define _CRT_SECURE_NO_WARNINGS 5
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+char *my_strcpy(char*des, const char*src)//const修饰不可变量 //模拟实现strcpy函数
+{
+	assert(des != NULL);
+	assert(src != NULL);
+	char*ret = des;
+	while (*des = *src)
+	{
+		
+		*src++;
+		*des++;
+	}
+	return ret;
+}
+int main()
+{
+	char str[] = "i love China!";
+	char cpy[20];
+    printf("%s", my_strcpy(cpy, str));
+	system("pause");
+	return 0;
+
+}
